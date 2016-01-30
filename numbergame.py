@@ -2,12 +2,29 @@ import random
 
 
 def want_to_play():
-    start = raw_input("Do you want to play? ").upper()
+    start = raw_input("Do you want to play? Yes or No? ").upper()
     if start == "YES":
         print "\n***Ok great, let's play!***\n"
         guessing_game()
-    else:
+    elif start == "NO":
         print "Ok, maybe next time"
+    else:
+        print "Sorry, what?"
+        want_to_play()
+
+
+def play_again():
+    print "Play again?"
+
+    again = raw_input("Yes/No: ").upper()
+    if again == "YES":
+        print "\nGreat,let's play!\n"
+        guessing_game()
+    elif again == "NO":
+        print "\n**Thanks for playing, Goodbye**"
+    else:
+        print "Sorry what?"
+        play_again()
 
 
 def guessing_game():
@@ -35,19 +52,10 @@ def guessing_game():
             print "\n**Too Low**"
             lives -= 1
             print "Lives left: %s\n " % lives
-        elif lives == 0:
+        elif lives < 2:
             print "GAME OVER"
             break
 
-    print "Play again?"
-
-    again = raw_input("Yes/No: ").upper()
-    if str(again) == "YES":
-        print "\nGreat,let's play!\n"
-        guessing_game()
-    else:
-        print "\n**Thanks for playing, Goodbye**"
-
+    play_again()
 
 want_to_play()
-guessing_game()

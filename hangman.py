@@ -1,17 +1,12 @@
 import random
 
+my_list = ['paris', 'london', 'dublin', 'newyork', 'losangelas', 'colorado', 'mississippi']
 
-def game():
-    while True:
+good_guesses = []
+bad_guesses = []
 
-        num = int(input("Pick a number and let the computer guess: "))
-        comp_guess = random.randint(1, 10)
-        print "computer guessed: %s" % comp_guess
-        if comp_guess == num:
-            print("Computer wins")
-            break
-        else:
-            print "That's not it"
+secret_word = random.choice(my_list)
 
+print secret_word
 
-game()
+while len(bad_guesses) < 7
