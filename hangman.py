@@ -15,15 +15,14 @@ while len(bad_guesses) < 7 and len(good_guesses) != len(list(secret_word)):
             print '_',
 
     guess = raw_input("Guess a letter: ").lower()
+
     if guess in secret_word:
         print "That's in"
         good_guesses.append(guess)
         if len(good_guesses) == len(secret_word):
             print("You freakin' win!")
             break
-    elif guess not in secret_word:
-        print "Nope, that's not in the secret word"
-        bad_guesses.append(good_guesses)
+
         print "\n**You have %s more chances**\n" % -(len(bad_guesses) - 7)
     elif len(guess) != 1:
         print "Only one at a time"
@@ -34,6 +33,9 @@ while len(bad_guesses) < 7 and len(good_guesses) != len(list(secret_word)):
     elif not guess.isalpha():
         print "That's not a letter"
         continue
+    elif guess not in secret_word:
+        print "Nope, that's not in the secret word"
+        bad_guesses.append(good_guesses)
 
     else:
         print "You didn't win, my secret work was %s" % secret_word.upper()
