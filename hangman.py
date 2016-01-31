@@ -1,6 +1,6 @@
 import random
 
-my_list = ['paris', 'london', 'dublin', 'newyork', 'losangelas', 'colorado', 'mississippi']
+my_list = ['apples', 'pineapple', 'oranges', 'bananas', 'grapefruit', 'lemon', 'strawberry']
 
 good_guesses = []
 bad_guesses = []
