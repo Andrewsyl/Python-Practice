@@ -2,11 +2,10 @@ import random
 import os
 import sys
 
-my_list = ['apples', 'pineapple', 'oranges', 'bananas', 'grapefruit', 'lemon', 'strawberry']
-
-# file = open('C:/Users/Andrew/PycharmProjects/treehousetests/secret_words.txt', 'r')
-# print file.read(1)
-# file.close()
+#Open file and arrange words into a list
+with open('file.txt', 'r') as infile:
+    data = infile.read()
+my_list = data.splitlines() #.splitlines() TAKES LINES AND PUTS THEM INTO A LIST(VERY COOL)
 
 
 def play_again():
@@ -86,14 +85,14 @@ def play(done):
         guess = get_guess(good_guesses, bad_guesses)
 
         if guess in secret_word:
-            print "Well done! **%s** is in the secret word" % guess
+            print "Well done! **%s** is in the secret word" % guess.upper()
             good_guesses.append(guess)
             found = True
             for guess in secret_word:
                 if guess not in good_guesses:
                     found = False
             if found:
-                print "You win"
+                print "**You win**"
                 print "The secret word was %s" % secret_word.upper()
                 done = True
         else:
