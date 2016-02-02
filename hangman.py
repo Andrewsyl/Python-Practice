@@ -24,7 +24,8 @@ def play_again():
 
 
 def clear():
-    os.system('cls')
+    if os.name == 'nt':
+        os.system('cls')
     # os.system('clear')
 
 
