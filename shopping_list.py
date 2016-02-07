@@ -15,7 +15,10 @@ def remove(num):
 
 
 def add():
-    print "Welcome to the store, add items to your list!\n"
+    print "\nWelcome to the store, add items to your list!\n"
+    print "\nType: 'Done' at anytime to finish."
+    print "Type: 'Remove' to remove any unwanted items.\n"
+
     while True:
         item = raw_input("What would you like to add?: ").lower()
         if item == "show":
@@ -28,28 +31,37 @@ def add():
             break
 
         elif item == 'remove':
-            new = raw_input("What would you like to remove?: ")
-            if new not in shopping_list:
+            item_remove = raw_input("What would you like to remove?: ").lower()
+            if item_remove not in shopping_list:
                 print "That's not on your list"
                 continue
             for i in shopping_list:
-                if i == new:
+                if i == item_remove:
                     shopping_list.remove(i)
                     print "{} removed".format(i)
         else:
-            new_list = item.split(',')
-            try:
-                index = input("Give me a number to out the item at: ")
-                print "{} added".format(item)
-                pass
-            except NameError:
-                print "That's not a number, please enter item(s) again"
-                continue
+            while True:
+                new_list = item.split(',')
+                try:
+                    index = input("Where on the list would you like {} to be placed at?: ".format(item))
+                    if index > len(new_list):
+                        print "{} added to end of the list".format(item)
+                    else:
+                        print "{} added".format(item)
+                    pass
+                except NameError:
+                    print "That's not a number, please enter a number"
+                    continue
+                except TypeError:
+                    print "That's not a number, please enter a number"
+                    continue
 
-            for i in new_list:
-                shopping_list.insert(int(index) - 1, i)
+                for i in new_list:
+                    shopping_list.insert(int(index) - 1, i)
+                break
 
     print "Thanks for shopping"
+    print "Goodbye"
 
 
 add()
