@@ -2,12 +2,12 @@ import random
 import os
 import sys
 
-#Open file and arrange words into a list
+# Open file and arrange words into a list
 with open('file.txt', 'r') as infile:
     data = infile.read()
-my_list = data.splitlines() #.splitlines() TAKES LINES AND PUTS THEM INTO A LIST(VERY COOL)
+my_list = data.splitlines()  # .splitlines() TAKES LINES AND PUTS THEM INTO A LIST(VERY COOL)
 
-
+# PLAY AGAIN ==========>
 def play_again():
     print "Play Hangman?"
 
@@ -22,11 +22,11 @@ def play_again():
         print "Sorry what?"
         play_again()
 
-
+# CLEAR ==========>
 def clear():
     if os.name == 'nt':
         os.system('cls')
-    # os.system('clear')
+        # os.system('clear')
 
 
 def draw(bad_guesses, good_guesses, secret_word, lives_left):
@@ -47,34 +47,34 @@ def draw(bad_guesses, good_guesses, secret_word, lives_left):
         if guess in bad_guesses:
             print guess, '',
 
-    print('\n')
+# print('\n')
 
 
+# GUESS FUNCTION ==========>
 def get_guess(good_guesses, bad_guesses):
     while True:
         guess = raw_input("Guess a letter: ").lower()
-
         if guess in good_guesses or guess in bad_guesses:
             print "You have already guessed that letter"
-
         elif len(guess) > 1:
             print "Only one at a time"
-
         elif not guess.isalpha():
             print "That's not a letter"
         else:
             return guess
 
 
+# AMOUNT OF LIVES ==========>
 def lives(secret_word):
-    if len(secret_word) >= 7:
-        lives_length = 8
+    if len(secret_word) > 7:
+        lives_length = 6
         return lives_length
     else:
-        lives_length = 5
+        lives_length = 4
         return lives_length
 
 
+# MAIN GAME ===========>
 def play(done):
     good_guesses = []
     bad_guesses = []
@@ -102,7 +102,7 @@ def play(done):
             lives_left -= 1
             if lives_left == 0:
                 draw(bad_guesses, good_guesses, secret_word, lives_left)
-                print "You didn't get it"
+                print "\nOh no! You're a loser!"
                 print "The secret word was %s" % secret_word.upper()
                 done = True
 
@@ -119,6 +119,6 @@ def play(done):
 
 done = False
 
-while True:
-    play_again()
-    play(done)
+
+play_again()
+play(done)

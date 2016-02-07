@@ -35,7 +35,7 @@ def clear():
 
 def difficulty():
     while True:
-        lives = raw_input("What difficulty, \nEasy\nMedium\nHard?: ").upper()
+        lives = raw_input("What difficulty, \nEasy\nMedium\nHard?\n: ").upper()
         if lives == "HARD":
             hearts = 3
             print "You selected {}. That gives you {} lives".format(lives, hearts)
@@ -51,15 +51,16 @@ def difficulty():
         else:
             print "That's not a difficulty, try again"
 
+
 def guessing_game():
     num = random.randint(1, 10)
     lives = difficulty()
-    bad_gueses = []
-    clear()
+    bad_guesses = []
+    os.system('clear')
     while lives > 0:
 
         try:
-            guess = int(input("Guess a number between 1-10: "))
+            guess = input("Guess a number between 1-10: ")
             pass
         except NameError:
             print "That's not a number, try again"
@@ -70,21 +71,21 @@ def guessing_game():
         if guess == num:
             print "You got it, well done!"
             break
-        elif guess in bad_gueses:
+        elif guess in bad_guesses:
             print "You already guessed that, try again"
             continue
         elif guess > num:
             print "\n**Too High**"
             lives -= 1
-            bad_gueses.append(guess)
+            bad_guesses.append(guess)
             print "Lives left: %s\n " % lives
-            print "Bad guesses: %s" % bad_gueses
+            print "Bad guesses: %s" % bad_guesses
         elif guess < num:
             print "\n**Too Low**"
             lives -= 1
             print "Lives left: %s\n " % lives
-            bad_gueses.append(guess)
-            print "Bad guesses: %s" % bad_gueses
+            bad_guesses.append(guess)
+            print "Bad guesses: %s" % bad_guesses
 
     else:
         print "GAME OVER"
