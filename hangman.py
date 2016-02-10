@@ -38,11 +38,11 @@ def draw(bad_guesses, good_guesses, secret_word, lives_left):
     print "SECRET WORD: "
     for guess in secret_word:
         if guess in good_guesses:
-            print guess, '',
+            print guess.upper(), '',
         else:
             print '_',
     print ''
-    print 'Bad Guesses: '
+    print '\nBad Guesses: '
     for guess in bad_guesses:
         if guess in bad_guesses:
             print guess, '',
@@ -53,9 +53,15 @@ def draw(bad_guesses, good_guesses, secret_word, lives_left):
 # GUESS FUNCTION ==========>
 def get_guess(good_guesses, bad_guesses):
     while True:
-        guess = raw_input("Guess a letter: ").lower()
+        guess = raw_input("\n\nGuess a letter: ").lower()
         if guess in good_guesses or guess in bad_guesses:
             print "You have already guessed that letter"
+        elif guess == "quit":
+            quit = raw_input("Do you really want to quit? yes/no ")
+            return quit
+        elif guess == "full":
+            full_word = raw_input("Enter full word: ")
+            return full_word
         elif len(guess) > 1:
             print "Only one at a time"
         elif not guess.isalpha():
@@ -81,11 +87,27 @@ def play(done):
     secret_word = random.choice(my_list)
     lives_left = lives(secret_word)
 
+    print "Enter 'QUIT' at any stage to exit"
+
     while lives_left > 0:
         draw(bad_guesses, good_guesses, secret_word, lives_left)
         guess = get_guess(good_guesses, bad_guesses)
 
-        if guess in secret_word:
+
+
+        if guess == secret_word:
+            print "Well done"
+            print "**You win**"
+            print "The secret word was %s" % secret_word.upper()
+            done = True
+
+        elif guess == "yes":
+            print "\n**Thanks for playing"
+            sys.exit()
+        elif guess == "no":
+            continue
+
+        elif guess in secret_word:
             print "Well done! **%s** is in the secret word" % guess.upper()
             good_guesses.append(guess)
             found = True
@@ -119,6 +141,6 @@ def play(done):
 
 done = False
 
-
-play_again()
-play(done)
+while True:
+    play_again()
+    play(done)

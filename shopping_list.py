@@ -10,8 +10,7 @@ def showlist():
         count += 1
 
 
-def remove(num):
-    shopping_list.remove(num)
+
 
 
 def add():
@@ -29,9 +28,14 @@ def add():
             print "Here's your list"
             showlist()
             break
-
+        # elif not item.isalpha():
+        #     print "That's not an item, please try again"
+        #     continue
         elif item == 'remove':
+            showlist()
+            print ''
             item_remove = raw_input("What would you like to remove?: ").lower()
+
             if item_remove not in shopping_list:
                 print "That's not on your list"
                 continue

@@ -56,7 +56,7 @@ def guessing_game():
     num = random.randint(1, 10)
     lives = difficulty()
     bad_guesses = []
-    os.system('clear')
+    clear()
     while lives > 0:
 
         try:
