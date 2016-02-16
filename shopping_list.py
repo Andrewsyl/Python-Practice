@@ -70,8 +70,8 @@ def add():
 
 add()
 
-# import os,glob
-#
-# os.chdir('/Users/andrew/desktop/image dump')
-# for i in glob.glob('*.jpg'):
-#     print(i)
+import os,glob
+
+os.chdir('/Users/andrew/desktop/image dump')
+for i in glob.glob('*.jpg'):
+    print i
